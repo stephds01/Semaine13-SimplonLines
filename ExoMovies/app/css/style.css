@@ -1,0 +1,70 @@
+h3 {
+    font-size: 17px;
+}
+
+.hauteur {
+    line-height: 2;
+}
+ li {
+     list-style: none;
+ }
+
+.test input.ng-invalid.ng-touched{
+    background-color: #FA787E;
+}
+
+.test input.ng-valid.ng-touched{
+     background-color: #78FA89;
+ }
+
+.search-container {
+    padding: 15px;
+}
+
+.movieResultTab {
+    height: 600px;
+}
+
+.caption {
+    margin-top: -20px;
+}
+
+.caption:nth-child(4n+1) {
+    margin-top: 15px;
+}
+.groupBtn {
+    margin-bottom: 15px;
+}
+
+.caption .h3 , .groupBtnTab {
+    text-align: center;
+    font-size: 17px;
+}
+
+.imgTab {
+    padding: 0;
+}
+
+.nav {
+    margin-top: 15px;
+}
+
+.nav a{
+     padding: 15px;
+    color: #333333;
+ }
+
+.nav a:hover{
+    padding: 15px;
+    background-color: #333333;
+    color: #fff;
+    text-decoration: none;
+}
+
+.homeContent {
+    margin-top: 50px;
+    padding: 20px 0;
+
+    border: 2px double #333333;
+}
+
