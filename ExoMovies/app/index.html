@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-
+    <!--<script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>-->
 </head>
 <body>
 <div class="container-fluid" ng-controller="MainController">
@@ -30,13 +30,71 @@
 
     <!-- partie principale -->
         <div ng-view></div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="MovieFormController">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Ajouter un film</h4>
+                </div>
+                <form name="formulaire" class="form-horizontal" novalidate >
 
+                    <div class="form-group col-xs-12 test" ng-class="{'has-error': formulaire.title.$invalid && !formulaire.title.$pristine}">
+                        <label  for="title" class=" col-xs-3 "> Titre</label>
+                        <input type="text" id="title" name="title" ng-model="movie.title" required >
+                        <p ng-show="formulaire.title.$invalid && !formulaire.title.$pristine" class="help-block">Ce champ est requis</p>
+                    </div>
+                    <div class="form-group col-xs-12 test" >
+                        <label  for="category" class=" col-xs-3 "> catégorie</label>
+                        <input type="text" id="category" name="title" ng-model="movie.category" >
+                    </div>
+                    <div class="form-group col-xs-12 test">
+                        <label  for="lastViewDate" class=" col-xs-3 "> Date</label>
+                        <input type="text" id="lastViewDate" name="lastViewDate" ng-model="movie.lastViewDate" >
+                    </div>
+                    <div class="form-group col-xs-12 test">
+                        <label for="poster" class="  col-xs-3"> Poster</label>
+                        <input id="poster" name="poster" type="text" ng-model="movie.poster" placeholder="http://ImageHeberge.jpg">
+                    </div>
+                    <div class="form-group col-xs-12 test">
+                        <label for="releaseYear" class=" col-xs-3"> Année</label>
+                        <input id="releaseYear" name="releaseYear" type="text" ng-model="movie.releaseYear">
+                    </div>
+                    <div class="form-group col-xs-12 test">
+                        <label for="directors" class="  col-xs-3"> Réalisateur</label>
+                        <input id="directors" name="directors" type="text" ng-model='movie.directors'>
+                    </div>
+                    <div class="form-group col-xs-12 test">
+                        <label for="actors" class="  col-xs-3 "> Acteur</label>
+                        <input id="actors" name="actors" type="text" ng-model="movie.actors">
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for="synopsis" class="  col-xs-3"> synopsis</label>
+                        <input id="synopsis" name="synopsis" type="text" ng-model="movie.synopsis">
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for="rate" class="  col-xs-3"> Evaluation</label>
+                        <input id="rate" name="rate" type="text" ng-pattern="/^[0-5]{1}$/"  ng-model="movie.rate">
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <label for="price" class=" col-xs-3"> Prix</label>
+                        <input id="price" name="price" type="number" ng-model="movie.price">
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="reset" ng-click="removeMovie(movie)">Effacer</button>
+                        <button value="Ajouter" class="btn btn-success" ng-click="addMovie(movie)" type="submit" ng-disabled="formulaire.$invalid" >Ajouter</button>
+                    </div>
+                </form>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
 </div>
 
 
 
-<!--//  Les scripts-->
 
+<!--//  Les scripts-->
+<!--<script>var myDataRef = new Firebase('https://u2ruldx9ez1.firebaseio-demo.com/');</script>-->
 <!--<script   src="https://code.jquery.com/jquery-2.2.3.min.js"></script>-->
 <script   src="bower_components/jquery/dist/jquery.js"></script>
 <!--<script   src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>-->
@@ -47,10 +105,13 @@
 
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/firebase/firebase.js"></script>
+<script src="bower_components/angularfire/dist/angularfire.js"></script>
 
 <!--<script src="https://code.angularjs.org/1.5.3/angular-route.js"></script>-->
 
 <script src="js/app.js"></script>
+
 
 <!--Service & factories-->
 <script src="js/factories/MoviesFactory.js"></script>

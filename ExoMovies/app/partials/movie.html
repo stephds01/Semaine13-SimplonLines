@@ -1,7 +1,8 @@
     <div>
         <header class="container-fluid">
             <div class="page-header col-xs-12">
-                <h1 >Ma vidéothèque <small>{{movies.length}} films</small> <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Ajouter un film</button></h1>
+                <h1 >Ma vidéothèque <small>{{movies.length}} films</small>
+                    <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">Ajouter un film</button></h1>
             </div>
         </header>
 
@@ -32,7 +33,7 @@
                                 <h3>{{movie.title | uppercase}}</h3>
                                 <div class="groupBtn">
                                     <button class="btn btn-danger btn-sm" ng-click="deleteMovie(movie)"><i class="icon-trash icon-white"></i></button>
-                                    <button class="btn btn-danger btn-sm" ng-click="goMovie('movie/edit/' + movie.id)"><i class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm" ng-click="goMovie('movie/edit/' + $index)"><i class="glyphicon glyphicon-edit"></i></button>
                                 </div>
                                 <p><b>Catégorie : </b>{{movie.category}}</p>
                                 <p><b>Date de sortie : </b>{{movie.lastViewDate | dataFilter}}</p>
@@ -58,7 +59,7 @@
                                 <h3 class="h3">{{movie.title | uppercase}}</h3>
                                 <div class="groupBtnTab">
                                     <button class="btn btn-danger btn-sm" ng-click="deleteMovie(movie)"><i class="icon-trash icon-white"></i></button>
-                                    <button class="btn btn-danger btn-sm" ng-click="goMovie('movie/edit/' + movie.id)"><i class="glyphicon glyphicon-edit"></i></button>
+                                    <button class="btn btn-danger btn-sm" ng-click="goMovie('movie/edit/' + $index)"><i class="glyphicon glyphicon-edit"></i></button>
                                 </div>
                                 <p><b>Catégorie : </b>{{movie.category}}</p>
                                 <p><b>Date de sortie : </b>{{movie.lastViewDate | dataFilter}}</p>
@@ -78,66 +79,5 @@
         </div>
 
 
-
-        <!--//Ajout d'un modal-->
-        <!-- Modal -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" ng-controller="MovieFormController">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">Ajouter un film</h4>
-                    </div>
-                    <form name="formulaire" class="form-horizontal" novalidate >
-
-                        <div class="form-group col-xs-12 test" ng-class="{'has-error': formulaire.title.$invalid && !formulaire.title.$pristine}">
-                            <label  for="title" class=" col-xs-3 "> Titre</label>
-                            <input type="text" id="title" name="title" ng-model="movie.title" required >
-                            <p ng-show="formulaire.title.$invalid && !formulaire.title.$pristine" class="help-block">Ce champ est requis</p>
-                        </div>
-                        <div class="form-group col-xs-12 test" >
-                            <label  for="category" class=" col-xs-3 "> catégorie</label>
-                            <input type="text" id="category" name="title" ng-model="movie.category" >
-                        </div>
-                        <div class="form-group col-xs-12 test">
-                            <label  for="lastViewDate" class=" col-xs-3 "> Date</label>
-                            <input type="text" id="lastViewDate" name="lastViewDate" ng-model="movie.lastViewDate" >
-                        </div>
-                        <div class="form-group col-xs-12 test">
-                            <label for="poster" class="  col-xs-3"> Poster</label>
-                            <input id="poster" name="poster" type="text" ng-model="movie.poster" placeholder="http://ImageHeberge.jpg">
-                        </div>
-                        <div class="form-group col-xs-12 test">
-                            <label for="releaseYear" class=" col-xs-3"> Année</label>
-                            <input id="releaseYear" name="releaseYear" type="text" ng-model="movie.releaseYear">
-                        </div>
-                        <div class="form-group col-xs-12 test">
-                            <label for="directors" class="  col-xs-3"> Réalisateur</label>
-                            <input id="directors" name="directors" type="text" ng-model='movie.directors'>
-                        </div>
-                        <div class="form-group col-xs-12 test">
-                            <label for="actors" class="  col-xs-3 "> Acteur</label>
-                            <input id="actors" name="actors" type="text" ng-model="movie.actors">
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label for="synopsis" class="  col-xs-3"> synopsis</label>
-                            <input id="synopsis" name="synopsis" type="text" ng-model="movie.synopsis">
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label for="rate" class="  col-xs-3"> Evaluation</label>
-                            <input id="rate" name="rate" type="text" ng-pattern="/^[0-5]{1}$/"  ng-model="movie.rate">
-                        </div>
-                        <div class="form-group col-xs-12">
-                            <label for="price" class=" col-xs-3"> Prix</label>
-                            <input id="price" name="price" type="number" ng-model="movie.price">
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-danger" type="reset" ng-click="removeMovie(movie)">Effacer</button>
-                            <button value="Ajouter" class="btn btn-success" ng-click="addMovie(movie)" type="submit" ng-disabled="formulaire.$invalid" >Ajouter</button>
-                        </div>
-                    </form>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
 
     </div>

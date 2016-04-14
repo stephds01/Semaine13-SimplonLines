@@ -46,32 +46,62 @@
 //             .error(function(data, statusText) {
 //                 $scope.ServerResponse = data + statusText;
 //             });
-//
-//
-//
-//
 //         alert('modifier');
 //     }
 //
 // });
 
 //Method avec Resources
-myApp.controller('EditMovieController',function($scope, $routeParams, MoviesFactory) {
+
+myApp.controller('EditMovieController',function($scope, $routeParams, MoviesFactory, $location) {
+
+    // $scope.message = "Hello";
 
     //Je mets dans le scope les parametres de la route
-    $scope.id = $routeParams.id;
-    console.log('index n° ' + $scope.id);
+    $scope.index = $routeParams.id;
+    console.log('index n° ' + $scope.index);
 
 
-    //Je crée un requete resource get pour aller chercher 1 seul film avec id de la route
-    $scope.oneMovie = MoviesFactory.get({movie: $scope.id});
+    // //Je crée un requete resource get pour aller chercher 1 seul film avec id de la route
+    // $scope.oneMovie = MoviesFactory;
+    // $scope.oneMovie = MoviesFactory.get({movie: $scope.id});
+    //
+    // $scope.oneMovie.$promise.then(function(data) {
+    //     $scope.data = data;
+    //     console.log($scope.data);
+    //
+    //     //Je remplace les champs du form par le text du movie selectionné
+    //     $scope.movie = $scope.data;
+    // });
 
-    $scope.oneMovie.$promise.then(function(data) {
-        $scope.data = data;
-        console.log($scope.data);
-        //Je remplace les champs du form par le text du movie selectionné
-        $scope.movie = $scope.data;
-    });
+
+    //Supprimer le text des champs
+    // $scope.deleteEdit = function(movie) {
+    //     $scope.movie = movie;
+    //     $scope.movie = {};
+    // };
+
+    // AVEC FIREBASE
+    $scope.Movies = MoviesFactory;
+    $scope.movie = $scope.Movies[$scope.index];
+
+
+    //Afficher les champs du formulaire
+    $scope.movie = $scope.Movies[$scope.index];
+    console.log($scope.movie);
+
+    // $scope.index= $scope.movie ;
+
+
+
+
+    // $scope.oneMovie.$promise.then(function(data) {
+    //     $scope.data = data;
+    //     console.log($scope.data);
+    //
+    //     //Je remplace les champs du form par le text du movie selectionné
+    //     $scope.movie = $scope.data;
+    // });
 
 
     //Supprimer le text des champs
@@ -80,15 +110,17 @@ myApp.controller('EditMovieController',function($scope, $routeParams, MoviesFact
         $scope.movie = {};
     };
 
-    //Mettre à jour les modification duformulaire et enregistré ds movies.json
-    $scope.editMovie = function (movie) {
-        $scope.movie = movie;
-        console.log($scope.movie);
-        console.log($scope.id);
-        //Je mets a jour la ressource MovieFactory avec l'objet $scope.id($paramsRoute) & j'envoie en parametre l'argument (movie)
-        MoviesFactory.update({movie: $scope.id}, movie);
-    }
 
+    //Mettre à jour les modification du formulaire et enregistré ds movies.json
+    $scope.editMovie = function (movie) {
+
+        $scope.Movies.$save(movie);
+
+        $location.path('movie');
+
+
+
+    };
 
 });
 

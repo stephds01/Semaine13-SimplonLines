@@ -2,7 +2,7 @@
  * Created by Stéphanie on 25/03/2016.
  */
 
-var myApp = angular.module('myApp',[ 'ngResource','ngRoute']);
+var myApp = angular.module('myApp',['ngResource','ngRoute', 'firebase']);
 
 
 myApp.config(function($routeProvider ) {

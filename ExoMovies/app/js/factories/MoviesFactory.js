@@ -47,15 +47,26 @@
 //     }
 // });
 
-myApp.factory('MoviesFactory', function($resource){
+// myApp.factory('MoviesFactory', function($resource){
+//
+//     return $resource('https://dbmovies.firebaseio.com/movies/:movie', {movie:"@movie"}, {
+//         update:{
+//             method:'PUT'
+//         }
+//
+//     });
+//
+//
+// });
 
-    return $resource('http://localhost:3004/movies/:movie', {movie:"@movie"}, {
-        update:{
-            method:'PUT'
-        }
 
-    });
+myApp.factory('MoviesFactory', function($firebaseArray){
 
-    
+    var ref = new Firebase('https://dbmovies.firebaseio.com/movies');
+    var Movies = $firebaseArray(ref);
+
+    console.log(Movies);
+    return Movies;
 });
+
 

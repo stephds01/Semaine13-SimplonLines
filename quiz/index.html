@@ -14,7 +14,7 @@
 
                     <li ng-repeat="(key, response) in question.response">
                         <label>
-                            <input type="checkbox" value="{{response}}" check-list="checked_value">
+                            <input type="checkbox" value="{{response}}" checklist-model="type" checklist-value="key">
                             {{response.text}}
                         </label>
                     </li>

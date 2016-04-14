@@ -77,27 +77,33 @@
 
 myApp.controller('MovieController', function($scope, MoviesFactory, $location) {
     //Gère l'affichage TOUS LES FILMS de la page avec
-    $scope.movies = MoviesFactory.query();
+    $scope.movies = MoviesFactory;
 
 
-    //Gère la supression du film en cliquant sur poubelle
+    //Gère la supression du film en cliquant sur poubelle avec Api Rest Full
+    // $scope.deleteMovie = function(movie) {
+    //     console.log(movie);
+    //
+    //     MoviesFactory.delete({movie:movie.id},function(){
+    //         console.log('id est : ' + movie.id);
+    //
+    //         //Je supprime les données ds la vue
+    //         $scope.movies = MoviesFactory.query();
+    //     })
+    // };
+
+
+    //Gère la supression du film en cliquant sur poubelle avec Firebase
     $scope.deleteMovie = function(movie) {
         console.log(movie);
-
-        MoviesFactory.delete({movie:movie.id},function(){
-            console.log('id est : ' + movie.id);
-
-            //Je supprime les données ds la vue
-            $scope.movies = MoviesFactory.query();
-        })
+        MoviesFactory.$remove(movie);
     };
-
 
     //Gère l'edition du film en cliquant sur ardoise/crayon
     $scope.goMovie = function(path) {
         console.log(path);
         $location.path(path);
-        // alert('lola');
+        alert('lola');
     };
 
     //Qd tu cliques sur le btn, tu crées une variable de orderByCategorie, tu lui affectes arguments du tableau qu'il doit trier puis tu va ds HTML et ds le ng-repeat tu met orderBy: orderByCategorie (c'est la variable crée) : orderByReverse (si tu veux inverser a chaque click
@@ -112,6 +118,8 @@ myApp.controller('MovieController', function($scope, MoviesFactory, $location) {
         $scope.orderByYear = 'lastViewDate';
         $scope.orderByReverse = !$scope.orderByReverse;
     };
+
+
 
 
 
