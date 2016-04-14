@@ -53,23 +53,23 @@
 
                     <ul class="thumbnails col-xs-4" ng-repeat="movie in movies | filter: search | orderBy: orderByCategorie : orderByReverse | orderBy: orderByYear: orderByReverse">
                         <li class="movieResult movieResultTab col-xs-12" >
-                            <img ng-src="{{movie.poster | noImgFilter : (!poster || '')  }}" class="col-xs-3 imgTab">
+                            <img ng-src="{{movie.poster | noImgFilter : (!poster || '')  }}" class="col-xs-12 imgTab">
 
-                            <div class="caption col-xs-9">
+                            <div class="captionTab col-xs-12">
                                 <h3 class="h3">{{movie.title | uppercase}}</h3>
                                 <div class="groupBtnTab">
                                     <button class="btn btn-danger btn-sm" ng-click="deleteMovie(movie)"><i class="icon-trash icon-white"></i></button>
                                     <button class="btn btn-danger btn-sm" ng-click="goMovie('movie/edit/' + $index)"><i class="glyphicon glyphicon-edit"></i></button>
                                 </div>
-                                <p><b>Catégorie : </b>{{movie.category}}</p>
-                                <p><b>Date de sortie : </b>{{movie.lastViewDate | dataFilter}}</p>
-                                <!--<p><b>date : </b>{{movie.lastViewDate }}</p>-->
-                                <!--<p><b>Année de sortie : </b>{{movie.releaseYear | date:'yyyy'}}</p>-->
-                                <p><b>Réalisateur : </b>{{movie.directors}}</p>
-                                <p><b>Acteurs : </b>{{movie.actors}}</p>
-                                <p><b>Synopsis : </b>{{movie.synopsis}}</p>
-                                <p><b>Evaluation : </b>{{movie.rate | starsFilter}}</p>
-                                <p><b>prix : </b>{{movie.price | currency:"€"}}</p>
+                                <!--<p><b>Catégorie : </b>{{movie.category}}</p>-->
+                                <!--<p><b>Date de sortie : </b>{{movie.lastViewDate | dataFilter}}</p>-->
+                                <!--&lt;!&ndash;<p><b>date : </b>{{movie.lastViewDate }}</p>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<p><b>Année de sortie : </b>{{movie.releaseYear | date:'yyyy'}}</p>&ndash;&gt;-->
+                                <!--<p><b>Réalisateur : </b>{{movie.directors}}</p>-->
+                                <!--<p><b>Acteurs : </b>{{movie.actors}}</p>-->
+                                <!--<p><b>Synopsis : </b>{{movie.synopsis}}</p>-->
+                                <!--<p><b>Evaluation : </b>{{movie.rate | starsFilter}}</p>-->
+                                <!--<p><b>prix : </b>{{movie.price | currency:"€"}}</p>-->
                             </div>
                         </li>
                     </ul>

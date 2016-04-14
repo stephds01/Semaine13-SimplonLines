@@ -22,11 +22,11 @@ h3 {
 }
 
 .movieResultTab {
-    height: 600px;
+    height: 470px
 }
 
 .caption {
-    margin-top: -20px;
+    margin-top: -21px;
 }
 
 .caption:nth-child(4n+1) {
@@ -39,6 +39,10 @@ h3 {
 .caption .h3 , .groupBtnTab {
     text-align: center;
     font-size: 17px;
+}
+
+.captionTab {
+    margin-top: 5px;
 }
 
 .imgTab {
