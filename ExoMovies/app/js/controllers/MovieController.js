@@ -75,9 +75,9 @@
 
 //Méthode avec controller en utisant $ressource
 
-myApp.controller('MovieController', function($scope, MoviesFactory, $location) {
+myApp.controller('MovieController', function($scope, MoviesFactory, $location, $firebaseArray, MoviesCleanFactory) {
     //Gère l'affichage TOUS LES FILMS de la page avec
-    $scope.movies = MoviesFactory;
+    // $scope.movies = MoviesFactory;
 
 
     //Gère la supression du film en cliquant sur poubelle avec Api Rest Full
@@ -101,6 +101,8 @@ myApp.controller('MovieController', function($scope, MoviesFactory, $location) {
 
     //Gère l'edition du film en cliquant sur ardoise/crayon
     $scope.goMovie = function(path) {
+        $scope.movies = MoviesFactory;
+
         console.log(path);
         $location.path(path);
         alert('lola');
@@ -120,8 +122,28 @@ myApp.controller('MovieController', function($scope, MoviesFactory, $location) {
     };
 
 
+    //Bouton Reset
+    $scope.reset = function() {
+
+        var ref = new Firebase('https://dbmovies.firebaseio.com/movies');
+
+        ref.set(MoviesCleanFactory)
+            .then(function () {
+                $scope.movies = $firebaseArray(ref);
+
+                console.log($scope.movies);
+
+                // return $scope.movies;
+            })
+            .catch(function (status) {
+                console.log('error : ' + status)
+            });
+
+        alert('lol');
+    };
 
 
 
 
+    $scope.reset();
 });

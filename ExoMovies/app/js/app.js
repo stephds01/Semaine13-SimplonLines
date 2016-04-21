@@ -11,15 +11,15 @@ myApp.config(function($routeProvider ) {
     // Routes configurations
     $routeProvider
     .when('/home', {
-        templateUrl: '/partials/home.html',
+        templateUrl: 'partials/home.html',
         controller: 'HomeController'
     })
     .when('/movie', {
-        templateUrl: '/partials/movie.html',
+        templateUrl: 'partials/movie.html',
         controller: 'MovieController'
     })
     .when('/movie/edit/:id', {
-        templateUrl: '/partials/editMovie.html',
+        templateUrl: 'partials/editMovie.html',
         controller: 'EditMovieController'
     })
     .otherwise({
